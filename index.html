@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanessa Abunyewa — UI/UX Designer & Computer Science Student</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        purple: {
+                            50:'#FAF1FE',100:'#F3E0FC',200:'#E7C2F9',300:'#D794F3',400:'#C25FEB',
+                            500:'#B440E5',600:'#A726E0',700:'#8A1DBA',800:'#6F1A95',900:'#591777',950:'#3A0A52'
+                        },
+                        sky: { 400:'#5BB3EA', 500:'#2F9BE0', 600:'#2280C0' },
+                        brand: {
+                            purple: '#A726E0',
+                            rose: '#E8366D',
+                            sky: '#2F9BE0',
+                            dark: '#0F172A',
+                        }
+                    },
+                    animation: {
+                        'float-1': 'float 7s ease-in-out infinite',
+                        'float-2': 'floatRev 9s ease-in-out infinite',
+                        'float-3': 'floatSlow 11s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-16px) rotate(2deg)' },
+                        },
+                        floatRev: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(18px) rotate(-2deg)' },
+                        },
+                        floatSlow: {
+                            '0%, 100%': { transform: 'translate(0px, 0px)' },
+                            '50%': { transform: 'translate(12px, -12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: none;
+        }
+        
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            box-shadow: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: none;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: none;
+            border-color: #A726E0;
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+        .dark .glass-pill {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Scroll progress bar */
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: #A726E0; z-index: 60; }
+
+        /* Typed role line */
+        .type-caret { display: inline-block; width: 2px; height: 1.1em; background: #2F9BE0; margin-left: 3px; vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .type-caret { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(167, 38, 224, 0.5);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(167, 38, 224, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 min-h-full font-sans overflow-x-hidden selection:bg-purple-200 selection:text-purple-900">
+
+    <div id="scroll-progress"></div>
+
+
+    <!-- 1. NAVIGATION BAR -->
+    <header class="fixed top-4 inset-x-4 sm:inset-x-8 max-w-7xl mx-auto z-40">
+        <nav class="glass-panel rounded-2xl px-5 py-3 flex items-center justify-between transition-all duration-300">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full bg-[#A726E0] p-[2px] group-hover:scale-105 transition-transform">
+                    <img src="logo-nav.jpg" alt="Asi Yaa logo" class="w-full h-full rounded-full object-cover">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-sm sm:text-base tracking-tight leading-none text-slate-900 dark:text-white">Vanessa Abunyewa</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center gap-1 font-medium text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                <a href="#about" class="px-3.5 py-2 rounded-xl hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-slate-800/60 transition-all">About</a>
+                <a href="#work" class="px-3.5 py-2 rounded-xl hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-slate-800/60 transition-all">Work</a>
+                <a href="#skills" class="px-3.5 py-2 rounded-xl hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-slate-800/60 transition-all">Skills</a>
+                <a href="#certifications" class="px-3.5 py-2 rounded-xl hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-slate-800/60 transition-all">Certifications</a>
+                <a href="#contact" class="px-3.5 py-2 rounded-xl hover:text-purple-600 hover:bg-purple-50/50 dark:hover:bg-slate-800/60 transition-all">Contact</a>
+            </div>
+
+            <!-- Theme toggle -->
+            <div class="flex items-center gap-2">
+
+                <button onclick="toggleTheme()" class="p-2.5 rounded-xl glass-pill hover:bg-white/80 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors" title="Toggle Light/Dark Theme">
+                    <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10 pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 sm:space-y-32">
+
+        <!-- 2. HERO SECTION -->
+        <section class="min-h-[82vh] flex items-center justify-center pt-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+                
+                <!-- Left Bio Content -->
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-purple-500/20 text-purple-700 dark:text-purple-300 text-xs font-semibold shadow-sm">
+                        <i class="fa-solid fa-graduation-cap text-rose-500"></i>
+                        Computer Science Student @ GCTU
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
+                        Engineering Code. <br>
+                        <span class="text-[#A726E0]">Designing</span>
+                        <span class="text-[#2F9BE0]">Experiences.</span>
+                    </h1>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+                        Hi, I'm <strong class="text-slate-900 dark:text-white font-semibold">Vanessa Abunyewa</strong>. I bridge algorithmic structure (<strong class="text-purple-600 dark:text-purple-400">C++ & Java</strong>) with intuitive mobile UI/UX and visual graphic identity. 
+                    </p>
+
+                    <p class="text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200" aria-live="off">
+                        Currently: <span id="typed-role" class="text-[#A726E0] dark:text-purple-400"></span><span class="type-caret"></span>
+                    </p>
+
+                    <!-- Primary CTAs -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#work" class="px-7 py-3.5 rounded-2xl bg-[#A726E0] hover:bg-[#8A1DBA] text-white font-semibold text-sm hover:-translate-y-0.5 transition-all">
+                            View My Work <i class="fa-solid fa-arrow-down-long ml-2 text-xs"></i>
+                        </a>
+                        <a href="#contact" class="px-7 py-3.5 rounded-2xl glass-card hover:bg-white/80 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-sm hover:-translate-y-0.5 transition-all">
+                            Contact Me
+                        </a>
+                        <a href="Vanessa_Abunyewa_CV.pdf" download="Vanessa_Abunyewa_CV.pdf" class="px-7 py-3.5 rounded-2xl border-2 border-purple-600 text-purple-700 dark:text-purple-300 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 dark:hover:text-white font-semibold text-sm hover:-translate-y-0.5 transition-all">
+                            <i class="fa-solid fa-download mr-2 text-xs"></i> Download CV
+                        </a>
+                    </div>
+
+                    <!-- Direct Social Profiles Bar -->
+                    <div class="pt-6 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-wrap items-center gap-4 text-xs">
+                        <a href="https://github.com/codenet20" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" class="flex items-center justify-center w-10 h-10 rounded-xl glass-pill hover:text-purple-600 transition-colors">
+                            <i class="fa-brands fa-github text-purple-600 text-base"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vanessa-abunyewa-9048a1395" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" class="flex items-center justify-center w-10 h-10 rounded-xl glass-pill hover:text-sky-600 transition-colors">
+                            <i class="fa-brands fa-linkedin text-sky-500 text-base"></i>
+                        </a>
+                        <a href="https://www.instagram.com/asi_grafix?dlrf=YjBuMDV4bXUwNzU4" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" class="flex items-center justify-center w-10 h-10 rounded-xl glass-pill hover:text-rose-500 transition-colors font-bold">
+                            <i class="fa-brands fa-instagram text-rose-500 text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual: Custom SVG Avatar & Hero Glass Badge -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+
+                        <div class="glass-panel rounded-3xl p-6 sm:p-8 relative z-10 space-y-6 text-center border border-slate-300/50 dark:border-slate-800">
+                            
+                            <!-- Custom SVG Avatar representing Vanessa (long dark wavy hair in a bun with spectacles) -->
+                            <div class="relative inline-block mx-auto">
+                                <div class="w-44 h-44 sm:w-52 sm:h-52 rounded-full bg-[#A726E0] p-1 overflow-hidden relative">
+                                    <!-- PROFILE PICTURE: save your photo next to this file as "profile.jpg" (or change the src below) -->
+                                    <img src="profile.jpg" alt="Vanessa Abunyewa" class="w-full h-full rounded-full object-cover object-center"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <!-- Placeholder shown until the photo is added -->
+                                    <div class="absolute inset-0 hidden flex-col items-center justify-center text-purple-400 dark:text-purple-300">
+                                        <i class="fa-solid fa-camera text-2xl"></i>
+                                        <span class="text-[10px] font-semibold mt-1">Your photo</span>
+                                    </div>
+                                </div>
+                                <span class="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full flex items-center justify-center" title="Available for projects">
+                                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                                </span>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Vanessa Abunyewa</h3>
+                                <p class="text-xs text-purple-600 dark:text-purple-400 font-medium tracking-wide mt-0.5">UI/UX Designer & Computer Science Student</p>
+                            </div>
+
+                            <!-- Mini Quick Badges -->
+                            <div class="grid grid-cols-3 gap-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/50 text-center">
+                                <div class="glass-pill p-2 rounded-xl">
+                                    <span class="block text-sm font-bold text-slate-900 dark:text-white">GCTU</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400">Second-Year CS</span>
+                                </div>
+                                <div class="glass-pill p-2 rounded-xl">
+                                    <span class="block text-sm font-bold text-slate-900 dark:text-white">CodeAlpha</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400">UI/UX Intern</span>
+                                </div>
+                                <div class="glass-pill p-2 rounded-xl">
+                                    <span class="block text-sm font-bold text-rose-500">asi_grafix</span>
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400">Instagram</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2b. QUICK STATS -->
+        <section aria-label="At a glance" class="space-y-6">
+            <div class="grid grid-cols-3 gap-4 text-center">
+                <div class="glass-card rounded-2xl py-5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-[#A726E0]"><span data-count="4">0</span></div>
+                    <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Projects built</div>
+                </div>
+                <div class="glass-card rounded-2xl py-5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-[#2F9BE0]"><span data-count="2">0</span></div>
+                    <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Certificates earned</div>
+                </div>
+                <div class="glass-card rounded-2xl py-5">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-[#E8366D]"><span data-count="3">0</span></div>
+                    <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Disciplines combined</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SELECTED PROJECTS SECTION -->
+        <section id="work" class="space-y-8 scroll-mt-28">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200/80 dark:border-slate-800/80 pb-6">
+                <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-1">Featured Showcase</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Selected Work</h2>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 p-1.5 rounded-2xl glass-panel shadow-sm text-xs font-semibold">
+                    <button onclick="filterPortfolio('all', this)" class="filter-btn active px-4 py-2 rounded-xl bg-purple-600 text-white shadow-md transition-all">
+                        All Projects
+                    </button>
+                    <button onclick="filterPortfolio('uiux', this)" class="filter-btn px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white transition-all">
+                        UI/UX & Mobile
+                    </button>
+                    <button onclick="filterPortfolio('web', this)" class="filter-btn px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white transition-all">
+                        Web & CS Projects
+                    </button>
+                    <button onclick="filterPortfolio('graphic', this)" class="filter-btn px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white transition-all">
+                        Graphic Design
+                    </button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid Container -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- PROJECT 1: FreeFlow Accessibility App (UI/UX & Mobile) -->
+                <div class="project-card uiux glass-card rounded-3xl p-6 flex flex-col justify-between group cursor-pointer" onclick="openCaseStudy('freeflow')">
+                    <div class="space-y-4">
+                        <div class="h-56 rounded-2xl overflow-hidden relative bg-[#000a1a]">
+                            <img src="cover-freeflow.png" alt="FreeFlow Accessibility App" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-[11px] font-bold text-sky-600 dark:text-sky-300">
+                                UI/UX & Mobile
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                <span>Speech-to-Sign Accessibility</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-purple-600 transition-colors"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">FreeFlow — Speech-to-Sign App</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                                Cross-platform mobile accessibility application featuring real-time audio waveform visualizers, sign language interpretation prompts, and high contrast UI.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-4 mt-2 border-t border-slate-200/40 dark:border-slate-800/40">
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-300 text-xs font-semibold">Flutter</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-300 text-xs font-semibold">Figma</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-300 text-xs font-semibold">Accessibility (a11y)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold"><i class="fa-solid fa-lock text-[10px] mr-1"></i>Private repo</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 text-xs font-semibold"><i class="fa-solid fa-circle text-[7px] mr-1.5 align-middle"></i>Live demo</span>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: GlowNotes (UI/UX & Mobile) -->
+                <div class="project-card uiux glass-card rounded-3xl p-6 flex flex-col justify-between group cursor-pointer" onclick="openCaseStudy('glow-notes')">
+                    <div class="space-y-4">
+                        <div class="h-56 rounded-2xl overflow-hidden relative bg-purple-100 dark:bg-slate-800">
+                            <img src="cover-glow-notes.jpg" alt="GlowNotes Mobile App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-[11px] font-bold text-purple-600 dark:text-purple-300">
+                                Mobile UI/UX Design
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                <span>Personal Lifestyle Platform</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-purple-600 transition-colors"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">GlowNotes</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                                A journaling and personal-growth app with an AI companion, daily devotion, PIN-sealed private entries, and Female and Male experiences.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-4 mt-2 border-t border-slate-200/40 dark:border-slate-800/40">
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-300 text-xs font-semibold">Flutter</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-300 text-xs font-semibold">Firebase</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-300 text-xs font-semibold">AI Companion</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 text-xs font-semibold"><i class="fa-solid fa-circle text-[7px] mr-1.5 align-middle"></i>Live demo</span>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Reweave Africa (Web & CS Projects) -->
+                <div class="project-card web glass-card rounded-3xl p-6 flex flex-col justify-between group cursor-pointer" onclick="openCaseStudy('reweave')">
+                    <div class="space-y-4">
+                        <div class="h-56 rounded-2xl overflow-hidden relative bg-[#F9E4DE]">
+                            <img src="cover-reweave-africa.png" alt="Reweave Africa Website" class="w-full h-full object-cover object-left group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-[11px] font-bold text-emerald-600 dark:text-emerald-300">
+                                Web & CS Project
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                <span>Sustainable Textile Marketplace</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-purple-600 transition-colors"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Reweave Africa</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                                Mini website platform empowering sustainable African textile artisans with responsive product catalog layouts and intuitive cart navigation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-4 mt-2 border-t border-slate-200/40 dark:border-slate-800/40">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 text-xs font-semibold">HTML5/CSS3</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 text-xs font-semibold">JavaScript</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 text-xs font-semibold">E-Commerce UX</span>
+                    </div>
+                </div>
+
+                <!-- PROJECT 4: ASI Grafix Visual Showcase (Graphic Design) -->
+                <div class="project-card graphic glass-card rounded-3xl p-6 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="h-56 rounded-2xl overflow-hidden relative bg-black">
+                            <img src="cover-asi-grafix.jpg" alt="ASI Grafix Portfolio" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-[11px] font-bold text-rose-600 dark:text-rose-300">
+                                Graphic Design & Branding
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                <span>@asi_grafix Visual Suite</span>
+                                <i class="fa-brands fa-instagram text-rose-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-rose-500 transition-colors">ASI Grafix — Graphic Posters</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">
+                                Curated visual poster designs, promotional flyers, and visual brand identity packages emphasizing clean typographic layouts in Photoshop.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-2 border-t border-slate-200/40 dark:border-slate-800/40 space-y-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-300 text-xs font-semibold">Photoshop</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-300 text-xs font-semibold">Canva / PixelLab</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-300 text-xs font-semibold">Brand Identity</span>
+                        </div>
+
+                        <!-- Direct Call to Action Button to Instagram -->
+                        <a href="https://www.instagram.com/asi_grafix?dlrf=YjBuMDV4bXUwNzU4" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-[#E8366D] hover:bg-[#C92B5A] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-instagram text-base"></i> View Graphic Designs on Instagram
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. HYBRID SKILLSET MATRIX -->
+        <section id="skills" class="space-y-8 scroll-mt-28">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">Capabilities Breakdown</div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Hybrid Skillset Matrix</h2>
+                <p class="text-sm text-slate-600 dark:text-slate-400">
+                    Combining computational engineering fundamentals with interactive UI/UX and visual graphic design.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Category 1: Engineering & CS -->
+                <div class="glass-card rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Engineering & Dev</h3>
+                            <p class="text-xs text-slate-500">CS Core & Stack</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 font-medium text-xs">
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">C++ & Java</span>
+                            <span class="text-purple-600 dark:text-purple-400 font-mono">Algorithms & OOP</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">HTML5 / CSS3 / JS</span>
+                            <span class="text-purple-600 dark:text-purple-400 font-mono">Front-End</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Flutter Mobile</span>
+                            <span class="text-purple-600 dark:text-purple-400 font-mono">Cross-Platform</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Git & GitHub</span>
+                            <span class="text-purple-600 dark:text-purple-400 font-mono">Version Control</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap gap-1.5 text-[11px]">
+                        <span class="glass-pill px-2.5 py-1 rounded-lg">Data Structures</span>
+                        <span class="glass-pill px-2.5 py-1 rounded-lg">State Management</span>
+                    </div>
+                </div>
+
+                <!-- Category 2: UI/UX & Product Design -->
+                <div class="glass-card rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">UI/UX & Product</h3>
+                            <p class="text-xs text-slate-500">CodeAlpha & Research</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 font-medium text-xs">
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Figma & Adobe XD</span>
+                            <span class="text-rose-500 font-mono">High-Fi Prototyping</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Wireframing</span>
+                            <span class="text-rose-500 font-mono">User Flows</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Usability Testing</span>
+                            <span class="text-rose-500 font-mono">User Research</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Responsive Layouts</span>
+                            <span class="text-rose-500 font-mono">Design Systems</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap gap-1.5 text-[11px]">
+                        <span class="glass-pill px-2.5 py-1 rounded-lg">Accessibility (a11y)</span>
+                        <span class="glass-pill px-2.5 py-1 rounded-lg">User Journeys</span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Graphic & Visual Design -->
+                <div class="glass-card rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white">Graphic & Visual</h3>
+                            <p class="text-xs text-slate-500">asi_grafix Suite</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 font-medium text-xs">
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Photoshop & Lightroom</span>
+                            <span class="text-sky-500 font-mono">Visual Editing</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Canva & PixelLab</span>
+                            <span class="text-sky-500 font-mono">Posters & Flyers</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Brand Identity</span>
+                            <span class="text-sky-500 font-mono">Visual Systems</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40">
+                            <span class="text-slate-700 dark:text-slate-300 font-semibold">Typography</span>
+                            <span class="text-sky-500 font-mono">Spatial Layouts</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://www.instagram.com/asi_grafix?dlrf=YjBuMDV4bXUwNzU4" target="_blank" rel="noopener noreferrer" class="w-full py-2 px-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-300 hover:bg-rose-100 transition-colors flex items-center justify-between text-xs font-semibold">
+                            <span>Explore @asi_grafix</span>
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. CERTIFICATIONS & CREDENTIALS SECTION -->
+        <section id="certifications" class="space-y-8 scroll-mt-28">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+                <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-1">Recognitions</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Certifications & Achievements</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                
+                <!-- CERTIFICATE 1: Mastercard Foundation x Jobberman Ghana -->
+                <div class="glass-card rounded-3xl p-6 space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <a href="cert-mastercard-jobberman.jpg" target="_blank" rel="noopener noreferrer" class="block rounded-xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60" title="View full certificate">
+                            <img src="cert-mastercard-jobberman.jpg" alt="Certificate of Participation, Soft Skills & Career Readiness Training" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-500">
+                        </a>
+                        <span class="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Mastercard Foundation &amp; Jobberman Ghana</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">Soft Skills &amp; Career Readiness Training</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Certificate of Participation for completing the HAPPY Program, curated by Jobberman Ghana.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200/40 dark:border-slate-800/40 flex items-center justify-between text-[11px]">
+                        <span class="font-semibold text-slate-400">8th July 2026</span>
+                        <span class="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 text-[10px] font-bold">Completed</span>
+                    </div>
+                </div>
+
+                <!-- CERTIFICATE 2: CodeAlpha UI/UX Design Internship -->
+                <div class="glass-card rounded-3xl p-6 space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <a href="cert-codealpha-internship.jpg" target="_blank" rel="noopener noreferrer" class="block h-44 rounded-xl overflow-hidden border border-slate-200/60 dark:border-slate-800/60" title="View full offer letter">
+                            <img src="cert-codealpha-internship.jpg" alt="CodeAlpha UI/UX Design Internship Offer Letter" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500">
+                        </a>
+                        <span class="text-[10px] font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">CodeAlpha</span>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">UI/UX Design Internship</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Selected as a UI/UX Design Intern for CodeAlpha's virtual internship, working on practical UI/UX assignments and projects.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200/40 dark:border-slate-800/40 flex items-center justify-between text-[11px]">
+                        <span class="font-semibold text-slate-400">Sep 2026</span>
+                        <span class="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 text-[10px] font-bold">Offer Letter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ABOUT ME SECTION -->
+        <section id="about" class="scroll-mt-28">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+                    <!-- Photo -->
+                    <div class="lg:col-span-4 flex justify-center">
+                        <div class="relative w-full max-w-xs">
+                            <img src="about-photo.jpg" alt="Vanessa Abunyewa" class="relative w-full aspect-[4/5] object-cover object-top rounded-3xl border-4 border-[#A726E0]">
+                        </div>
+                    </div>
+
+                    <!-- Text -->
+                    <div class="lg:col-span-8 space-y-4">
+                        <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">About Me</div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Bridging Technical Precision &amp; Creative Elegance.
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I am a Computer Science student at <strong class="text-slate-900 dark:text-white">Ghana Communication Technology University</strong> with a passion for technology, creativity, and innovation.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I consider myself a curious, creative, and ambitious individual who is always eager to learn, explore new ideas, and challenge myself to grow. My interests lie in software development, UI/UX design, and graphic design, where I enjoy combining logical thinking with creative problem-solving to bring ideas to life.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I am particularly interested in how technology can be used to solve real-world problems and create meaningful user experiences. Beyond technology, I value personal development, collaboration, and continuous learning.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                            I believe in the power of curiosity, consistency, and creativity in shaping great ideas, and I am committed to growing my skills, embracing new opportunities, and making a meaningful contribution to the ever-evolving world of technology.
+                        </p>
+                        <a href="Vanessa_Abunyewa_CV.pdf" download="Vanessa_Abunyewa_CV.pdf" class="inline-flex items-center px-6 py-3 rounded-2xl bg-[#A726E0] hover:bg-[#8A1DBA] text-white font-semibold text-sm hover:-translate-y-0.5 transition-all">
+                            <i class="fa-solid fa-download mr-2 text-xs"></i> Download My CV
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CONTACT SECTION -->
+        <section id="contact" class="scroll-mt-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">Get In Touch</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Let's build something impactful together.</h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        Whether you want to discuss a UI/UX project, software prototype, or graphic design consultation, feel free to reach out!
+                    </p>
+
+                    <div class="space-y-4 pt-2 text-xs">
+                        <a href="mailto:vanessaabunyewa@gmail.com" class="flex items-center gap-3 group">
+                            <div class="w-9 h-9 rounded-xl glass-pill flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span class="text-slate-700 dark:text-slate-300 font-medium group-hover:text-purple-600 transition-colors">vanessaabunyewa@gmail.com</span>
+                        </a>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl glass-pill flex items-center justify-center text-rose-500">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <span class="text-slate-700 dark:text-slate-300 font-medium">Accra, Ghana & Available Remotely</span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Social Media Icons -->
+                    <div class="flex items-center gap-3 pt-4">
+                        <a href="https://github.com/codenet20" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-purple-600 transition-colors" title="GitHub">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/vanessa-abunyewa-9048a1395" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-base"></i>
+                        </a>
+                        <a href="https://www.instagram.com/asi_grafix?dlrf=YjBuMDV4bXUwNzU4" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-rose-500 transition-colors" title="Instagram @asi_grafix">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Glassmorphic Contact Form -->
+                <div class="lg:col-span-7">
+                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleContact(event)" class="glass-panel rounded-3xl p-6 sm:p-8 space-y-5">
+                        <input type="hidden" name="form-name" value="contact">
+                        <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Your Name</label>
+                                <input type="text" name="name" required placeholder="e.g. Alex Mensah" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Email Address</label>
+                                <input type="email" name="email" required placeholder="alex@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Subject / Opportunity</label>
+                            <input type="text" name="subject" required placeholder="e.g. Mobile UI/UX Design Inquiry" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Message</label>
+                            <textarea rows="4" name="message" required placeholder="Tell me about your project..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-[#A726E0] hover:bg-[#8A1DBA] text-white font-bold text-sm hover:-translate-y-0.5 transition-all">
+                            Send Message <i class="fa-solid fa-paper-plane ml-2 text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200/60 dark:border-slate-800/60 py-8 relative z-10 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Vanessa Abunyewa. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/codenet20" target="_blank" rel="noopener noreferrer" class="hover:underline">GitHub</a>
+                <a href="https://www.linkedin.com/in/vanessa-abunyewa-9048a1395" target="_blank" rel="noopener noreferrer" class="hover:underline">LinkedIn</a>
+                <a href="https://www.instagram.com/asi_grafix?dlrf=YjBuMDV4bXUwNzU4" target="_blank" rel="noopener noreferrer" class="hover:underline">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 8. CASE STUDY MODAL POPUP -->
+    <div id="case-study-modal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="glass-panel max-w-3xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl relative my-8 border border-white/80 dark:border-slate-800 max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-start justify-between border-b border-slate-200/60 dark:border-slate-800/60 pb-4 mb-6">
+                <div>
+                    <span id="cs-badge" class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Category</span>
+                    <h2 id="cs-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Project Title</h2>
+                </div>
+                <button onclick="closeCaseStudy()" class="p-2 rounded-xl glass-pill hover:bg-white dark:hover:bg-slate-800 text-slate-500">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-6">
+                <div class="h-64 rounded-2xl overflow-hidden relative">
+                    <img id="cs-image" src="" alt="Project Cover" class="w-full h-full object-cover">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-4 space-y-2">
+                        <h4 class="text-xs font-bold text-rose-500 uppercase tracking-wider">Problem Statement</h4>
+                        <p id="cs-problem" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Details...</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-4 space-y-2">
+                        <h4 class="text-xs font-bold text-purple-600 uppercase tracking-wider">Solution & Execution</h4>
+                        <div id="cs-solution" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">Details...</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Technologies & Tools</h4>
+                    <div id="cs-tags" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+
+            <div id="cs-note" class="hidden mt-6 p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200/70 dark:border-amber-800/50 text-xs text-amber-800 dark:text-amber-200 leading-relaxed flex items-start gap-3">
+                <i id="cs-note-icon" class="fa-solid fa-lock mt-0.5"></i>
+                <span id="cs-note-text"></span>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-wrap justify-end gap-3">
+                <button onclick="closeCaseStudy()" class="px-5 py-2.5 rounded-xl glass-card text-xs font-semibold">Close</button>
+                <a id="cs-app-link" href="#" download class="hidden px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-md items-center gap-2 hover:-translate-y-0.5 transition-all">
+                    <i class="fa-brands fa-android text-sm"></i> Download for Android
+                </a>
+                <a id="cs-demo-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-5 py-2.5 rounded-xl bg-[#2F9BE0] hover:bg-[#2280C0] text-white text-xs font-semibold items-center gap-2 hover:-translate-y-0.5 transition-all">
+                    <i class="fa-solid fa-play text-[10px]"></i> View Live Demo
+                </a>
+                <a id="cs-github-link" href="https://github.com/codenet20" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold shadow-md flex items-center gap-2">
+                    <i class="fa-brands fa-github text-sm"></i> View Project
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Toast -->
+    <button id="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top" title="Back to top" class="fixed bottom-6 left-6 z-40 hidden w-11 h-11 rounded-xl bg-[#A726E0] hover:bg-[#8A1DBA] text-white items-center justify-center hover:-translate-y-1 transition-all">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-panel px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-3 transition-all border border-emerald-500/30">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-500 text-base"></i>
+        <span id="toast-message" class="text-slate-900 dark:text-white">Message</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Case Study Data
+        const caseStudyData = {
+            'freeflow': {
+                title: 'FreeFlow — Speech-to-Sign App',
+                category: 'UI/UX & Mobile',
+                image: 'cover-freeflow.png',
+                fit: 'object-contain', bg: '#000a1a',
+                problem: 'Deaf and hard-of-hearing individuals face significant communication barriers in real-time interactions.',
+                solution: 'Designed an accessible cross-platform mobile experience in Flutter & Figma with speech-to-sign translation prompts, real-time audio visualizers, and accessible typography.',
+                tags: ['Flutter', 'Figma UX', 'Accessibility (a11y)', 'Mobile UI'],
+                demo: 'https://freeflow-demo.netlify.app',
+                linkLabel: 'GitHub (Private)',
+                linkIcon: 'fa-solid fa-lock',
+                note: 'The FreeFlow code is in a private GitHub repository. You can only view it if I grant you permission, so please reach out through the contact section to request access.'
+            },
+            'glow-notes': {
+                title: 'GlowNotes',
+                category: 'UI/UX & Mobile',
+                image: 'cover-glow-notes.jpg',
+                problem: 'Many people have no private, judgment-free space to write out their thoughts, ask honest questions, grow in faith, and learn to understand the opposite gender.',
+                solution: 'GlowNotes is a journaling and personal-growth app that helps people write out their thoughts, reflect on how they feel, and grow in faith, with an experience tailored to whether the user is female or male.',
+                solutionHtml: `<p class="mb-2">GlowNotes helps people write out their thoughts, reflect on how they feel, and grow in faith, with an experience tailored to whether the user is female or male.</p>
+                    <ul class="list-disc pl-4 space-y-1.5">
+                        <li><strong>Journal:</strong> entries with a title, text, photos and voice notes. Tag your mood, seal private entries behind a PIN, and look back through a calendar and insights such as streaks and word counts.</li>
+                        <li><strong>AI companion:</strong> a judgment-free chat to ask questions, talk through what you're feeling, or get a journaling prompt.</li>
+                        <li><strong>Daily devotion:</strong> a Bible verse each day with a reflection question.</li>
+                        <li><strong>Female and male pages:</strong> you choose Female or Male at sign-up, and the app changes its look, wording and content to fit.</li>
+                        <li><strong>Learn about the other side:</strong> the male page teaches common things about women, and the female page does the same about men. Either can ask the AI to go deeper.</li>
+                        <li><strong>Personalisation:</strong> wallpapers, dark mode and reminders make it your own space.</li>
+                    </ul>`,
+                tags: ['Flutter', 'Firebase', 'AI Companion', 'Mobile UI/UX'],
+                apk: 'GlowNotes.apk',
+                demo: 'https://glownotes-demo.netlify.app',
+                noteIcon: 'fa-solid fa-circle-info',
+                note: 'The Android app is a direct download (APK). Your phone may ask you to allow installs from this source. Open the downloaded file and tap Install. iPhone users can contact me for a walkthrough.'
+            },
+            'reweave': {
+                title: 'Reweave Africa',
+                category: 'Web & CS Projects',
+                image: 'cover-reweave-africa.png',
+                fit: 'object-cover object-left', bg: '#F9E4DE',
+                problem: 'Sustainable African textile artisans lack digital e-commerce web platforms to reach international buyers.',
+                solution: 'Engineered a clean mini website showcasing sustainable textile collections, custom product filters, and interactive web layout architecture.',
+                tags: ['HTML5/CSS3', 'JavaScript', 'E-Commerce UX', 'Web Dev'],
+                link: 'https://aboutagyakwa.my.canva.site/reweave-africa',
+                linkLabel: 'View Live Site',
+                linkIcon: 'fa-solid fa-arrow-up-right-from-square'
+            }
+        };
+
+        // Filter Portfolio Cards
+        function filterPortfolio(category, btnElement) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-purple-600 dark:hover:text-white transition-all';
+            });
+            btnElement.className = 'filter-btn active px-4 py-2 rounded-xl bg-purple-600 text-white shadow-md transition-all';
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Open Modal
+        function openCaseStudy(key) {
+            const data = caseStudyData[key];
+            if (!data) return;
+
+            document.getElementById('cs-title').innerText = data.title;
+            document.getElementById('cs-badge').innerText = data.category;
+            const csImg = document.getElementById('cs-image');
+            csImg.src = data.image;
+            csImg.className = 'w-full h-full ' + (data.fit || 'object-cover');
+            csImg.parentElement.style.background = data.bg || '';
+            document.getElementById('cs-problem').innerText = data.problem;
+            const solEl = document.getElementById('cs-solution');
+            if (data.solutionHtml) { solEl.innerHTML = data.solutionHtml; } else { solEl.innerText = data.solution; }
+
+            const tagsContainer = document.getElementById('cs-tags');
+            tagsContainer.innerHTML = '';
+            data.tags.forEach(tag => {
+                const badge = document.createElement('span');
+                badge.className = 'px-3 py-1 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-300 text-xs font-semibold';
+                badge.innerText = tag;
+                tagsContainer.appendChild(badge);
+            });
+
+            const noteBox = document.getElementById('cs-note');
+            if (data.note) {
+                document.getElementById('cs-note-text').innerText = data.note;
+                document.getElementById('cs-note-icon').className = (data.noteIcon || 'fa-solid fa-lock') + ' mt-0.5';
+                noteBox.classList.remove('hidden');
+            } else {
+                noteBox.classList.add('hidden');
+            }
+            const appBtn = document.getElementById('cs-app-link');
+            if (data.apk) {
+                appBtn.href = data.apk;
+                appBtn.setAttribute('download', data.apk);
+                appBtn.classList.remove('hidden');
+                appBtn.classList.add('flex');
+            } else {
+                appBtn.classList.add('hidden');
+                appBtn.classList.remove('flex');
+            }
+            const demoBtn = document.getElementById('cs-demo-link');
+            if (data.demo) {
+                demoBtn.href = data.demo;
+                demoBtn.classList.remove('hidden');
+                demoBtn.classList.add('flex');
+            } else {
+                demoBtn.classList.add('hidden');
+                demoBtn.classList.remove('flex');
+            }
+            const linkBtn = document.getElementById('cs-github-link');
+            linkBtn.href = data.link || 'https://github.com/codenet20';
+            linkBtn.innerHTML = `<i class="${data.linkIcon || 'fa-brands fa-github'} text-sm"></i> ${data.linkLabel || 'View Project'}`;
+
+            document.getElementById('case-study-modal').classList.remove('hidden');
+        }
+
+        // Close Modal
+        function closeCaseStudy() {
+            document.getElementById('case-study-modal').classList.add('hidden');
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fa-solid fa-moon text-sm';
+                try { localStorage.setItem('theme', 'light'); } catch (e) {}
+                showToast('Switched to Light Mode');
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fa-solid fa-sun text-sm text-amber-400';
+                try { localStorage.setItem('theme', 'dark'); } catch (e) {}
+                showToast('Switched to Dark Mode');
+            }
+        }
+
+        // Handle Contact Form Submission
+        function handleContact(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const original = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = 'Sending...';
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Request failed');
+                showToast('Thank you! Your message has been sent to Vanessa.');
+                form.reset();
+            })
+            .catch(err => { console.error('Contact form error:', err); showToast('Sorry, your message could not be sent. Please try again or email vanessaabunyewa@gmail.com.', true); })
+            .finally(() => { btn.disabled = false; btn.innerHTML = original; });
+        }
+
+        // Show Toast Message
+        let toastTimer;
+        function showToast(msg, isError) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const icon = document.getElementById('toast-icon');
+            toastMsg.innerText = msg;
+            icon.className = isError
+                ? 'fa-solid fa-circle-exclamation text-rose-500 text-base'
+                : 'fa-solid fa-circle-check text-emerald-500 text-base';
+            toast.classList.toggle('border-rose-500/40', !!isError);
+            toast.classList.toggle('border-emerald-500/30', !isError);
+            toast.classList.remove('hidden');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, isError ? 7000 : 3500);
+        }
+
+        // ===== Restore saved theme =====
+        (function () {
+            let t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) {}
+            if (t === 'dark') {
+                document.documentElement.classList.add('dark');
+                const ic = document.getElementById('theme-icon');
+                if (ic) ic.className = 'fa-solid fa-sun text-sm text-amber-400';
+            } else if (t === 'light') {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // ===== Typing role line =====
+        (function () {
+            const el = document.getElementById('typed-role');
+            if (!el) return;
+            const roles = ['UI/UX Designer', 'Flutter Developer', 'Brand & Graphic Designer', 'Computer Science Student'];
+            if (reduceMotion) { el.textContent = roles[0]; return; }
+            let r = 0, c = 0, del = false;
+            function tick() {
+                const word = roles[r];
+                el.textContent = word.slice(0, c);
+                if (!del && c === word.length) { del = true; return setTimeout(tick, 1600); }
+                if (del && c === 0) { del = false; r = (r + 1) % roles.length; }
+                c += del ? -1 : 1;
+                setTimeout(tick, del ? 35 : 75);
+            }
+            tick();
+        })();
+
+        // ===== Scroll progress + back to top =====
+        (function () {
+            const bar = document.getElementById('scroll-progress');
+            const top = document.getElementById('to-top');
+            function onScroll() {
+                const h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+                const show = window.scrollY > 600;
+                top.classList.toggle('hidden', !show);
+                top.classList.toggle('flex', show);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+
+        // ===== Counters + scroll reveal =====
+        (function () {
+            function count(el) {
+                const target = +el.dataset.count;
+                if (reduceMotion) { el.textContent = target; return; }
+                let n = 0;
+                const step = setInterval(() => {
+                    n++; el.textContent = n;
+                    if (n >= target) clearInterval(step);
+                }, 220);
+            }
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(en => {
+                    if (!en.isIntersecting) return;
+                    en.target.classList.add('in');
+                    en.target.querySelectorAll('[data-count]').forEach(count);
+                    io.unobserve(en.target);
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('main > section:not(:first-child)').forEach(sec => {
+                sec.classList.add('reveal');
+                io.observe(sec);
+            });
+        })();
+    </script>
+</body>
+</html>
